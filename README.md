@@ -2,6 +2,10 @@
 
 Ceci est un projet perso de to-do list crée avec Symfony avec stockage des tâches en base de données afin de les afficher même avec le refresh de la page.
 
+## Aperçu 
+
+<kbd>![](public/images/ecran_todolist.png)</kbd>
+
 ## Pour faire fonctionner le projet
 
 Après avoir cloné le projet, installez les dépendances avec 
