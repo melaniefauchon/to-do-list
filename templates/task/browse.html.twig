@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+	<main>
+		<div class="container mt-4 mb-4">
+			<div class="text-center">
+				<a href="" class="btn btn-success" type="button" id="button-addon2">
+					<i class="fas fa-plus"></i>
+					Ajouter une tâche</a>
+			</div>
+		</div>
+
+		<div class="container mt-4">
+			{{ include('_partials/_flash_messages.html.twig') }}
+
+			{% for task in tasks %}
+
+				<div class="row mb-3">
+					<div class="col-8">
+						<p>{{task.title|capitalize}}</p>
+					</div>
+					<div class="col">
+						<ul class="nav justify-content-end">
+							<li class="nav-item">
+								<a href="" class="btn btn-md btn-outline-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Complète la tâche">
+									<i class="far fa-check-circle"></i>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="" class="btn btn-md btn-outline-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Edite la tâche">
+									<i class="far fa-edit"></i>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="" class="btn btn-md btn-outline-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Supprime la tâche">
+									<i class="far fa-trash-alt"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			{% endfor %}
+
+		</div>
+
+	{% endblock %}
