@@ -110,7 +110,9 @@ class TaskController extends AbstractController
      */
     public function complete(Request $request, Task $task): Response
     {
-        $taskForm = $this->createForm(TaskType::class, $task);
+        $taskForm = $this->createForm(TaskType::class, $task, [
+            'disabled'=>'disabled'
+        ]);
 
         $taskForm->handleRequest($request);
 
@@ -128,10 +130,9 @@ class TaskController extends AbstractController
             return $this->redirectToRoute('browse');
         }
         // Ajout du formulaire à la vue
-        return $this->render('task/add.html.twig', [
+        return $this->render('task/complete.html.twig', [
             'task_form' => $taskForm->createView(),
             'task' => $task,
-            'page' => 'complete'
         ]);
     }
 }

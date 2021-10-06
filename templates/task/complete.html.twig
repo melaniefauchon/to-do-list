@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+	<div class="container">
+
+		<h2>
+			Terminer la tâche
+		</h2>
+
+		{{form_start(task_form)}}
+		{{ form_row(task_form.title)}}
+
+		<button class="btn btn-success mt-3">
+				<i class="far fa-check-circle"></i>
+				Terminer
+		</button>
+		{{ form_end(task_form) }}
+		<div class="text-start mt-2">
+			<a href="{{path('browse')}}" class="btn btn-primary">
+				<i class="fas fa-undo"></i>
+				Retour</a>
+		</div>
+	</div>
+{% endblock %}
