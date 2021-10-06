@@ -103,4 +103,35 @@ class TaskController extends AbstractController
 
         return $this->redirectToRoute('browse');
     }
+
+    /**
+     * Note une tâche comme complète
+     * @Route("/complete/{id}", name="complete", methods={"GET", "POST"}, requirements={"id"="\d+"})
+     */
+    public function complete(Request $request, Task $task): Response
+    {
+        $taskForm = $this->createForm(TaskType::class, $task);
+
+        $taskForm->handleRequest($request);
+
+        if ($taskForm->isSubmitted() && $taskForm->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $task->setUpdatedAt(new DateTimeImmutable());
+            $task->setIsComplete(true);
+            $entityManager->flush();
+
+            // Ajout d'un flashMessage pour avertir l'utilisateur de l'édition de la tâche
+            $this->addFlash('success', "La tâche `{$task->getTitle()}` a été terminée.");
+
+            // Redirection
+            return $this->redirectToRoute('browse');
+        }
+        // Ajout du formulaire à la vue
+        return $this->render('task/add.html.twig', [
+            'task_form' => $taskForm->createView(),
+            'task' => $task,
+            'page' => 'complete'
+        ]);
+    }
 }
