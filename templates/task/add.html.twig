@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+	<div class="container">
+
+		<h2>
+			{% if page == 'ajouter' %}
+				Ajouter une tâche
+			{% elseif page == 'edit' %}
+				Modifier la tâche `{{task.title}}`
+				{% else %}
+                Terminer la tâche
+			{% endif %}
+		</h2>
+
+
+		{{form_start(task_form)}}
+		{{ form_row(task_form.title)}}
+
+		<button class="btn btn-success mt-3">
+			{% if 'add' == app.request.get('_route') %}
+				<i class="fas fa-plus"></i>
+				Ajouter
+			{% elseif 'edit' == app.request.get('_route')%}
+				<i class="far fa-edit"></i>
+				Modifier
+            {% else %}
+                <i class="far fa-check-circle"></i> Terminer
+			{% endif %}
+		</button>
+		{{ form_end(task_form) }}
+		<div class="text-start mt-2"><a href="{{path('browse')}}" class="btn btn-primary"><i class="fas fa-undo"></i> Retour</a></div>
+	</div>
+{% endblock %}
